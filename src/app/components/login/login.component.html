@@ -1,0 +1,35 @@
+<section class="bg-main-light p-4 rounded my-3 mx-auto">
+
+    <h1>login Now</h1>
+
+    <form   (ngSubmit)="handelform()" [formGroup]="loginform" >
+    <div class="mb-2">
+        <label for="email">Email :</label>
+        <input #inputEmail type="email" formControlName="email" id="email" class="form-control">
+        <div class="alert alert-danger" *ngIf="loginform.get('email')?.errors && (loginform.get('email')?.touched||inputEmail.value.length>0)">
+                <p *ngIf="loginform.get('email')?.getError('required')">email is Required</p>
+                <p *ngIf="loginform.get('email')?.getError('email')">email not valid</p>
+ 
+        </div>
+
+    </div>
+    <div class="mb-2">
+        <label for="password">password :</label>
+    
+        <input #inputPasswor  type="password"  formControlName="password"  id="password" class="form-control">
+        <div class="alert alert-danger" *ngIf="loginform.get('password')?.errors && (loginform.get('password')?.touched||inputPasswor.value.length>0)">
+            <p *ngIf="loginform.get('password')?.getError('required')">password is Required</p>
+ 
+        </div>
+    </div>
+    <button  class="btn-main ms-auto d-block" [disabled]="loginform.invalid">
+        <i class="fas fa-spin fa-spinner" *ngIf="isLoading"></i>
+
+            login
+        
+        </button>
+        <p class="alert alert-danger" *ngIf="msgerror" >{{msgerror}}</p>
+   
+
+    </form>
+</section>
