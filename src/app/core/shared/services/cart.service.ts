@@ -30,7 +30,7 @@ export class CartService {
   }
 
   checkOut(cartID:string,checkoutForm:object):Observable<any>{
-    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=https://hazemgamaleldin.github.io/FreshCart/`,
+    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=https://hazemgamaleldin.github.io/FreshCart`,
     {
       shippingAddress:checkoutForm
     }
