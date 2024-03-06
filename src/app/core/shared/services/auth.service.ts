@@ -38,4 +38,16 @@ export class AuthService {
   {
    return this._HttpClient.post('https://ecommerce.routemisr.com/api/v1/auth/signin',userData)
   }
+
+  forgetpassword(email:object):Observable<any>{
+    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords`,email)
+  }
+
+  verifyRestCode(resetCode:object):Observable<any>{
+    return this._HttpClient.post('https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',resetCode)
+  }
+
+  resetPassword(newdata:object):Observable<any>{
+    return this._HttpClient.put('https://ecommerce.routemisr.com/api/v1/auth/resetPassword',newdata)
+  }
 }

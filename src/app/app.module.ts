@@ -17,11 +17,20 @@ import { NavBlankComponent } from './components/nav-blank/nav-blank.component';
 import { NavAuthComponent } from './components/nav-auth/nav-auth.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { BlankLayoutComponent } from './components/blank-layout/blank-layout.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TermtextPipe } from './termtext.pipe';
+import { SearchPipe } from './search.pipe';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
+import { MyhttpInterceptor } from './myhttp.interceptor';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +48,11 @@ import { TermtextPipe } from './termtext.pipe';
     NavAuthComponent,
     AuthLayoutComponent,
     BlankLayoutComponent,
-    TermtextPipe
+    TermtextPipe,
+    SearchPipe,
+    CheckoutComponent,
+    AllordersComponent,
+    WishlistComponent
     
   ],
   imports: [
@@ -48,9 +61,12 @@ import { TermtextPipe } from './termtext.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    FormsModule,
+    CommonModule,
+    ToastrModule.forRoot(), 
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS , useClass:MyhttpInterceptor , multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

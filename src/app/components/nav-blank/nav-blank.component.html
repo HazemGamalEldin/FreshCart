@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="home">
             <img src="./assets/images/freshcart-logo.svg" alt="">
@@ -20,6 +20,9 @@
             <a class="nav-link text-capitalize" routerLinkActive="active-link" routerLink="products">products</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link text-capitalize" routerLinkActive="active-link" routerLink="Wishlist">Wishlist</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link text-capitalize" routerLinkActive="active-link" routerLink="categories">categories</a>
           </li>
           <li class="nav-item">
@@ -30,7 +33,12 @@
         </ul>
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-           
+          <li class="nav-item me-4 hstack">
+            <a routerLink="/cart" class="text-main number-item">
+              <i class="fas fa-cart-shopping fa-xl"></i>
+              <span *ngIf="cartItemNumber"> {{ cartItemNumber }} </span>
+            </a>
+          </li>
             <li class="nav-item">
               <a class="nav-link" ><i class="fab fa-instagram"></i></a>
             </li>
@@ -49,6 +57,17 @@
             <li class="nav-item">
                 <a class="nav-link" ><i class="fab fa-youtube"></i></a>
             </li>
+           <!--  <li class="nav-item dropdown">
+              
+              <a class="nav-link dropdown-toggle" routerLink="/setting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-cog"></i> setting
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/setting/update">Update Password</a></li>
+                <li><a class="dropdown-item" routerLink="/setting/forgot">Forgot Password</a></li>
+               
+              </ul>
+            </li> -->
             <li class="nav-item">
                 <span class="nav-link cursor-pointer" (click)="logoutuser()" >SignOut</span>
             </li>

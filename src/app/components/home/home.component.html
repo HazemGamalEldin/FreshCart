@@ -42,25 +42,59 @@
 <!-- products -->
 
 <section class="my-4">
-    <h2>Popular Products</h2>
+<!--     <label for="search">search</label>
+ -->   
+ <h2>Popular Products</h2>
+
+  <input  [(ngModel)]="searchInput" type="search"   class="form-control w-50 mx-auto my-3" placeholder="Search">
     <div class="row g-4">
-        <div class="col-md-2"  *ngFor="let product  of products">
+        <div class="col-md-2"  *ngFor="let product  of products | search:searchInput ">
             <div class="product">
+ 
                 <div [routerLink]="['/details' , product._id]" class="p-2  cursor-pointer">
                     <img [src]="product.imageCover" [alt]="product.title" class="w-100">
-                <h3 class="h6">{{product.category.name}}</h3>
-                <h4 class="h6">{{product.title | termtext:2}}</h4>
+                
+                
+                
+                     <h3 class="h6">{{product.category.name |termtext:3}}</h3>
+                    <h4 class="h6">{{product.title | termtext:2}}</h4>                    
+                    
+                    
+                
+                
                 <div class="d-flex align-items-center justify-content-between">
                     <span>{{product.price | currency:"EGP " }}</span>
                     
                     <div>
-                        <i class="fas fa-star rating-color"></i> 
+                        <i class="fas fa-star  rating-color"></i> 
                         <span class="text-muted">{{product.ratingsAverage}}</span>
                     </div>
                 </div>
-                </div>
                 
-                <button class="btn-main w-100">add products</button>
+            
+            </div>
+            <div class="me-auto mx-2 d-flex justify-content-end align-items-end my-0">
+              
+
+                 <span
+        *ngIf="!whish.includes(product._id)"
+        (click)="addtowishlist(product._id)"
+      >
+        <i class="fa-regular fa-heart mx-2 fa-2x"  style="color:gray" ></i>
+      </span>
+
+      <span
+        *ngIf="whish.includes(product._id)"
+        (click)="removeFromWishlist(product._id)"
+      >
+        <i class="fa-solid fa-heart mx-2 fa-2x" style="color:red"></i>
+      </span>
+            </div>
+            
+
+
+                
+                <button (click)="addcart(product._id)"  class="btn-main w-100">add to Cart</button>
             </div>
         </div>
     </div>

@@ -55,6 +55,26 @@ a:hover {
   transform: translateY(0%);
 
 }
+
+.brand {
+  border-radius: 2px;
+  border: solid 1px var(hsl(187, 57%, 40%));
+  transition: box-shadow 0.5s;
+  overflow: hidden;
+}
+
+
+.brand:hover {
+  box-shadow: 0 0 10px hsl(187, 57%, 40%);
+}
+.brand .btn-main{
+  transform: translateY(150%);
+  transition: transform .7s;
+}
+.brand:hover .btn-main {
+  transform: translateY(0%);
+
+}
 .font-sm {
   font-size: 12px;
 }

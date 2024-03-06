@@ -40,7 +40,7 @@
             <input #inputRepassword formControlName="rePassword" type="password" id="rePassword" class="form-control">
             <div class="alert alert-danger" *ngIf="registerForm.get('rePassword')?.errors && (registerForm.get('rePassword')?.touched||inputRepassword.value.length>0)">
                 <p *ngIf="registerForm.get('rePassword')?.getError('required')">rePassword is Required</p>
-                <p *ngIf="registerForm.get('rePassword')?.getError('pattern')">rePassword must start with uppercase then from 6 to 20</p>
+                <p *ngIf="registerForm.get('rePassword')?.getError('mismatch')">rePassword must match Password</p>
 
             </div>
         </div>

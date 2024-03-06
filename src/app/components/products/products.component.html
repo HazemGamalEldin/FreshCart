@@ -1,1 +1,24 @@
-<p>products works!</p>
+<section class="my-4">
+<input  [(ngModel)]="searchInput" type="search"   class="form-control w-50 mx-auto my-3" placeholder="Search">
+<div class="row g-4">
+    <div class="col-md-3"  *ngFor="let product  of products | search:searchInput ">
+        <div class="brand">
+            <div [routerLink]="['/details' , product._id]" class="p-2  cursor-pointer">
+                <img [src]="product.imageCover" [alt]="product.title" class="w-100">
+            <h3 class="h6">{{product.category.name |termtext:3}}</h3>
+            <h4 class="h6">{{product.title | termtext:2}}</h4>
+            <div class="d-flex align-items-center justify-content-between">
+                <span>{{product.price | currency:"EGP " }}</span>
+                
+                <div>
+                    <i class="fas fa-star rating-color"></i> 
+                    <span class="text-muted">{{product.ratingsAverage}}</span>
+                </div>
+            </div>
+            </div>
+            
+            <button (click)="addcart(product._id)"  class="btn-main w-100">add to Cart</button>
+        </div>
+    </div>
+</div>
+</section>

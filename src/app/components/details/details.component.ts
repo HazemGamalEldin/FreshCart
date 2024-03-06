@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
 import { productdetails } from 'src/app/core/shared/interfaces/productdetails';
+import { CartService } from 'src/app/core/shared/services/cart.service';
 import { EcomdataService } from 'src/app/core/shared/services/ecomdata.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { EcomdataService } from 'src/app/core/shared/services/ecomdata.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  constructor(private _ActivatedRoute:ActivatedRoute , private _EcomdataService:EcomdataService){}
+  constructor(private _ActivatedRoute:ActivatedRoute , private _EcomdataService:EcomdataService , private _CartService:CartService , private _ToastrService:ToastrService){}
   productdetails:productdetails = {} as productdetails;
   productImgSlider: OwlOptions = {
     autoplay:true,
@@ -45,5 +47,11 @@ export class DetailsComponent implements OnInit {
       }
     })
       
+  }
+  addcart(productID:string):void{
+    this._CartService.addproduct(productID).subscribe({
+      next:(respons)=>{console.log(respons) ; this._ToastrService.success(`${respons.message}` , 'Fresh Cart')}
+      ,error:(err)=>{console.log(err)}
+    })
   }
 }
